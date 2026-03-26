@@ -1,6 +1,15 @@
+﻿[![CI/CD Pipeline](https://github.com/JanaDroubi/Webhook-Driven-Task-Processing-Pipeline/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/JanaDroubi/Webhook-Driven-Task-Processing-Pipeline/actions/workflows/ci.yml)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green?logo=node.js)]()
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?logo=typescript)]()
+[![Express](https://img.shields.io/badge/Express.js-backend-blue?logo=express)]()
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-orange?logo=postgresql)]()
+[![Redis](https://img.shields.io/badge/Redis-Queue-red?logo=redis)]()
+[![BullMQ](https://img.shields.io/badge/BullMQ-Job%20Queue-purple)]()
+[![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker)]()
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI/CD-black?logo=github-actions)]()
 
 
-# 🔄 Webhook Pipeline Service — Event-Driven Task Processing Platform
+# ðŸ”„ Webhook Pipeline Service â€” Event-Driven Task Processing Platform
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green?logo=node.js)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?logo=typescript)]()
@@ -17,7 +26,7 @@
 
 ---
 
-## 📚 Table of Contents
+## ðŸ“š Table of Contents
 
 1. [Project Overview](#project-overview)
 2. [Architecture](#architecture)
@@ -42,7 +51,7 @@
 
 ---
 
-## 🌍 Project Overview
+## ðŸŒ Project Overview
 
 **Webhook Pipeline Service** enables developers and organizations to:
 
@@ -57,19 +66,19 @@ All features are built with **TypeScript**, containerized with **Docker**, and d
 
 ---
 
-## 🏗️ Architecture
+## ðŸ—ï¸ Architecture
 
 ```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   API Server    │────▶│   BullMQ Queue   │────▶│    Worker       │
-│  (Express.js)   │     │   (Redis)        │     │   Processors    │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
-         │                       │                        │
-         ▼                       ▼                        ▼
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   PostgreSQL    │     │   Webhook Ingest │     │  Subscriber     │
-│   (Pipeline DB) │     │                  │     │  Delivery       │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚   API Server    â”‚â”€â”€â”€â”€â–¶â”‚   BullMQ Queue   â”‚â”€â”€â”€â”€â–¶â”‚    Worker       â”‚
+â”‚  (Express.js)   â”‚     â”‚   (Redis)        â”‚     â”‚   Processors    â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+         â”‚                       â”‚                        â”‚
+         â–¼                       â–¼                        â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚   PostgreSQL    â”‚     â”‚   Webhook Ingest â”‚     â”‚  Subscriber     â”‚
+â”‚   (Pipeline DB) â”‚     â”‚                  â”‚     â”‚  Delivery       â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 **Key Components:**
@@ -82,7 +91,7 @@ All features are built with **TypeScript**, containerized with **Docker**, and d
 
 ---
 
-## 🛠️ Tech Stack
+## ðŸ› ï¸ Tech Stack
 
 **Backend:**
 - Node.js + Express.js
@@ -102,33 +111,33 @@ All features are built with **TypeScript**, containerized with **Docker**, and d
 
 ---
 
-## ✨ Features
+## âœ¨ Features
 
 ### Core Features
-- ✅ **CRUD API** for managing pipelines
-- ✅ **Webhook ingestion** with unique source URLs
-- ✅ **Async processing** via BullMQ job queue
-- ✅ **Three processing actions** (transform, filter, enrich)
-- ✅ **Subscriber delivery** with automatic retry logic
-- ✅ **Job status tracking** with history and delivery attempts
-- ✅ **Docker Compose** for one-command setup
+- âœ… **CRUD API** for managing pipelines
+- âœ… **Webhook ingestion** with unique source URLs
+- âœ… **Async processing** via BullMQ job queue
+- âœ… **Three processing actions** (transform, filter, enrich)
+- âœ… **Subscriber delivery** with automatic retry logic
+- âœ… **Job status tracking** with history and delivery attempts
+- âœ… **Docker Compose** for one-command setup
 
 ### Reliability Features
-- ✅ **Automatic retries** with exponential backoff (3 attempts)
-- ✅ **Failed job recovery** via retry endpoint
-- ✅ **Delivery attempt logging** for audit trails
-- ✅ **Error tracking** in database
-- ✅ **Graceful shutdown** handling
+- âœ… **Automatic retries** with exponential backoff (3 attempts)
+- âœ… **Failed job recovery** via retry endpoint
+- âœ… **Delivery attempt logging** for audit trails
+- âœ… **Error tracking** in database
+- âœ… **Graceful shutdown** handling
 
 ### Monitoring Features
-- ✅ **Bull Dashboard** (http://localhost:3000/admin/queues)
-- ✅ **Job status API** with filtering
-- ✅ **System statistics** endpoint
-- ✅ **Health check** endpoint
+- âœ… **Bull Dashboard** (http://localhost:3000/admin/queues)
+- âœ… **Job status API** with filtering
+- âœ… **System statistics** endpoint
+- âœ… **Health check** endpoint
 
 ---
 
-## 🔧 Processing Actions
+## ðŸ”§ Processing Actions
 
 The service supports three built-in action types:
 
@@ -171,7 +180,7 @@ Removes sensitive fields (password, token, email, credit_card).
 
 ---
 
-## 🚀 How to Run the Project
+## ðŸš€ How to Run the Project
 
 ### Prerequisites
 
@@ -181,7 +190,7 @@ Removes sensitive fields (password, token, email, credit_card).
 
 ---
 
-### 1️⃣ Clone Repository
+### 1ï¸âƒ£ Clone Repository
 
 ```bash
 git clone https://github.com/yourusername/webhook-pipeline-service.git
@@ -190,7 +199,7 @@ cd webhook-pipeline-service
 
 ---
 
-### 2️⃣ Docker Setup
+### 2ï¸âƒ£ Docker Setup
 
 The project uses Docker Compose to orchestrate all services:
 
@@ -207,7 +216,7 @@ docker-compose down
 
 ---
 
-### 3️⃣ Environment Configuration
+### 3ï¸âƒ£ Environment Configuration
 
 Create a `.env` file in the project root:
 
@@ -231,7 +240,7 @@ WORKER_CONCURRENCY=5
 
 ---
 
-### 4️⃣ Database Setup
+### 4ï¸âƒ£ Database Setup
 
 Once containers are running, run database migrations:
 
@@ -245,7 +254,7 @@ npx prisma migrate dev --name init
 
 ---
 
-### 5️⃣ Start Services (Development Mode)
+### 5ï¸âƒ£ Start Services (Development Mode)
 
 **Terminal 1 - API Server:**
 ```bash
@@ -265,7 +274,7 @@ http://localhost:3000/admin/queues
 
 ---
 
-### 6️⃣ Verify Installation
+### 6ï¸âƒ£ Verify Installation
 
 ```bash
 # Health check
@@ -279,7 +288,7 @@ curl http://localhost:3000/
 
 ---
 
-## 📡 API Documentation
+## ðŸ“¡ API Documentation
 
 ### Base URL
 ```
@@ -344,7 +353,7 @@ POST /webhook/unique-slug
 
 ---
 
-## 🧪 Testing with Postman
+## ðŸ§ª Testing with Postman
 
 ### Sample Requests
 
@@ -388,42 +397,42 @@ GET http://localhost:3000/api/stats
 collection published @ https://documenter.getpostman.com/view/49389411/2sBXikoBHp
 ---
 
-## 📁 Project Structure
+## ðŸ“ Project Structure
 
 ```
 webhook-pipeline-service/
-├── src/
-│   ├── api/
-│   │   ├── controllers/      # Request handlers
-│   │   ├── routes/           # API routes
-│   │   └── middleware/       # Error handling, validation
-│   ├── services/
-│   │   ├── queue.service.ts  # BullMQ configuration
-│   │   ├── delivery.service.ts # Webhook delivery logic
-│   │   └── retry.service.ts  # Exponential backoff
-│   ├── workers/
-│   │   ├── worker.ts         # Job processor
-│   │   └── actions/          # Action implementations
-│   ├── config/
-│   │   ├── redis.ts          # Redis connection
-│   │   └── database.ts       # Prisma client
-│   ├── types/                # TypeScript interfaces
-│   ├── index.ts              # API server
-│   └── worker.ts             # Worker entry point
-├── prisma/
-│   ├── schema.prisma         # Database schema
-│   └── migrations/           # SQL migrations
-├── docker-compose.yml        # Container orchestration
-├── Dockerfile                # API/Worker image
-├── .env.example              # Environment template
-├── package.json              # Dependencies
-├── tsconfig.json             # TypeScript config
-└── README.md                 # Documentation
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ api/
+â”‚   â”‚   â”œâ”€â”€ controllers/      # Request handlers
+â”‚   â”‚   â”œâ”€â”€ routes/           # API routes
+â”‚   â”‚   â””â”€â”€ middleware/       # Error handling, validation
+â”‚   â”œâ”€â”€ services/
+â”‚   â”‚   â”œâ”€â”€ queue.service.ts  # BullMQ configuration
+â”‚   â”‚   â”œâ”€â”€ delivery.service.ts # Webhook delivery logic
+â”‚   â”‚   â””â”€â”€ retry.service.ts  # Exponential backoff
+â”‚   â”œâ”€â”€ workers/
+â”‚   â”‚   â”œâ”€â”€ worker.ts         # Job processor
+â”‚   â”‚   â””â”€â”€ actions/          # Action implementations
+â”‚   â”œâ”€â”€ config/
+â”‚   â”‚   â”œâ”€â”€ redis.ts          # Redis connection
+â”‚   â”‚   â””â”€â”€ database.ts       # Prisma client
+â”‚   â”œâ”€â”€ types/                # TypeScript interfaces
+â”‚   â”œâ”€â”€ index.ts              # API server
+â”‚   â””â”€â”€ worker.ts             # Worker entry point
+â”œâ”€â”€ prisma/
+â”‚   â”œâ”€â”€ schema.prisma         # Database schema
+â”‚   â””â”€â”€ migrations/           # SQL migrations
+â”œâ”€â”€ docker-compose.yml        # Container orchestration
+â”œâ”€â”€ Dockerfile                # API/Worker image
+â”œâ”€â”€ .env.example              # Environment template
+â”œâ”€â”€ package.json              # Dependencies
+â”œâ”€â”€ tsconfig.json             # TypeScript config
+â””â”€â”€ README.md                 # Documentation
 ```
 
 ---
 
-## 🧠 Design Decisions
+## ðŸ§  Design Decisions
 
 ### Why BullMQ + Redis?
 - **Reliability**: Built-in retries, job persistence, and failure handling
@@ -451,7 +460,7 @@ This approach balances delivery reliability with system load.
 
 ---
 
-## 🛡️ Error Handling & Reliability
+## ðŸ›¡ï¸ Error Handling & Reliability
 
 ### Delivery Retry Flow
 1. Attempt delivery to subscriber
@@ -473,7 +482,7 @@ This approach balances delivery reliability with system load.
 
 ---
 
-## ⭐ Stretch Goals Implemented
+## â­ Stretch Goals Implemented
 
 Beyond the core requirements, the project includes:
 
@@ -487,7 +496,7 @@ Beyond the core requirements, the project includes:
 
 ---
 
-## 🔧 Troubleshooting
+## ðŸ”§ Troubleshooting
 
 ### Common Issues & Solutions
 
@@ -531,7 +540,7 @@ taskkill /PID <PID> /F
 
 ---
 
-## 🤝 Credits
+## ðŸ¤ Credits
 
 Built as part of a **Webhook-Driven Task Processing Pipeline** project.
 
@@ -550,23 +559,23 @@ Simplified Zapier-like workflow automation for event-driven architectures.
 
 ---
 
-## 📄 License
+## ðŸ“„ License
 
 This project is for educational purposes as part of the final project submission.
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
-- ✅ **Scalable Architecture** - Separate API and worker processes
-- ✅ **Reliable Delivery** - Automatic retries with exponential backoff
-- ✅ **Complete Observability** - Job status, delivery logs, and dashboard
-- ✅ **Production-Ready** - Dockerized, type-safe, and well-documented
-- ✅ **Extensible** - Easy to add new action types and subscribers
+- âœ… **Scalable Architecture** - Separate API and worker processes
+- âœ… **Reliable Delivery** - Automatic retries with exponential backoff
+- âœ… **Complete Observability** - Job status, delivery logs, and dashboard
+- âœ… **Production-Ready** - Dockerized, type-safe, and well-documented
+- âœ… **Extensible** - Easy to add new action types and subscribers
 
 ---
 
-**Ready to build your own workflow automation?** 🚀
+**Ready to build your own workflow automation?** ðŸš€
 
 Start by creating a pipeline and sending your first webhook!
 
@@ -585,4 +594,5 @@ curl -X POST http://localhost:3000/webhook/my-pipeline \
 curl http://localhost:3000/api/jobs
 ```
 
-Happy building! 🎉
+Happy building! ðŸŽ‰
+
