@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: webhook_db
+    ports:
+      - "5432:5432"
+
+  redis_queue:
+    image: redis:7-alpine
+    container_name: redis_queue
+    ports:
+      - "6379:6379"
+
+  app_server:
+    build: .
+    container_name: app_server
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://user:password@postgres_db:5432/webhook_db?schema=public"
+      REDIS_HOST: "redis_queue"
+    depends_on:
+      - postgres_db
+      - redis_queue
+
+  app_worker:
+    build: .
+    container_name: app_worker
+    command: ["npm", "run", "worker"]
+    environment:
+      DATABASE_URL: "postgresql://user:password@postgres_db:5432/webhook_db?schema=public"
+      REDIS_HOST: "redis_queue"
+    depends_on:
+      - postgres_db
+      - redis_queue
