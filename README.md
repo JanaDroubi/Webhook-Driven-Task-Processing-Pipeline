@@ -385,6 +385,7 @@ GET http://localhost:3000/api/stats
 > [!TIP]
 > Import the Postman collection from the `/postman` folder for all test cases.
 
+collection published @ https://documenter.getpostman.com/view/49389411/2sBXikoBHp
 ---
 
 ## 📁 Project Structure
