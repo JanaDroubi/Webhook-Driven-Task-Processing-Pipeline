@@ -8,6 +8,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-orange?logo=postgresql)]()
 [![Redis](https://img.shields.io/badge/Redis-Queue-red?logo=redis)]()
 [![BullMQ](https://img.shields.io/badge/BullMQ-Job%20Queue-purple)]()
+[![CI/CD Pipeline](https://github.com/JanaDroubi/Webhook-Driven-Task-Processing-Pipeline/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/JanaDroubi/Webhook-Driven-Task-Processing-Pipeline/actions/workflows/ci.yml)
 [![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker)]()
 
 **Webhook Pipeline Service** is a Zapier-like platform that receives webhooks, processes them through configurable pipelines, and delivers results to multiple subscribers. Perfect for building event-driven workflows, data transformation pipelines, and notification systems.
