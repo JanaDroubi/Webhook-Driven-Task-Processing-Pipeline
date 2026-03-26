@@ -1,3 +1,4 @@
+Here's the fixed README.md with proper UTF-8 encoding and corrected special characters:
 
 ```markdown
 [![CI/CD Pipeline](https://github.com/JanaDroubi/Webhook-Driven-Task-Processing-Pipeline/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/JanaDroubi/Webhook-Driven-Task-Processing-Pipeline/actions/workflows/ci.yml)
@@ -597,4 +598,3 @@ curl http://localhost:3000/api/jobs
 ```
 
 Happy building! 🎉
-```
