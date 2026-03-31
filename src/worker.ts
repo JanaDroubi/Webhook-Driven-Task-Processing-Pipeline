@@ -91,7 +91,7 @@ await Promise.all(deliveryPromises);
     console.log(`✅ Job ${jobId} processed & delivered to ${pipeline.subscribers.length} subscribers`);
 
   } catch (error) {
-    console.error(`❌ Error processing job ${jobId}:`, error);
+    console.error(`❌Error processing job ${jobId}:`, error);
     await prisma.jobLog.update({
       where: { id: jobId },
       data: { status: 'FAILED' }
