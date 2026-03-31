@@ -11,7 +11,9 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
 "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.e2e.js",    "dev:worker": "nodemon --exec node --loader ts-node/esm src/worker.ts",
     "prisma:generate": "prisma generate",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "dev": "nodemon --exec node --loader ts-node/esm src/index.ts",
+"prisma:migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",

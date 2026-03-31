@@ -9,7 +9,7 @@ const worker = new Worker('webhook-handler', async (job) => {
   console.log(`🛠️ Processing Job: ${jobId}`);
 
   try {
-    // 1. جلب تفاصيل الـ Pipeline والمشتركين
+    // 1. Fetch Pipeline details and subscribers
     const pipeline = await prisma.pipeline.findUnique({
       where: { id: pipelineId },
       include: { subscribers: true }
@@ -17,7 +17,7 @@ const worker = new Worker('webhook-handler', async (job) => {
 
     if (!pipeline) throw new Error('Pipeline not found');
 
-    // 2. تنفيذ "عملية المعالجة" (تأكد من أن الأسماء تطابق ما ترسله في Postman)
+    // 2. Execute Processing Logic
     let processedResult = payload;
 
     switch (pipeline.actionType) {
@@ -44,7 +44,7 @@ const worker = new Worker('webhook-handler', async (job) => {
         processedResult = payload;
     }
 
-    // 3. حفظ النتيجة وتحديث الحالة في قاعدة البيانات
+    // 3. Save result and update status in Database
     await prisma.jobLog.update({
       where: { id: jobId },
       data: { 
@@ -53,13 +53,11 @@ const worker = new Worker('webhook-handler', async (job) => {
       }
     });
 
-    // 4. إرسال النتيجة لكل المشتركين (تنسيق خاص لـ Discord)
+    // 4. Send result to all subscribers (Discord format)
     const deliveryPromises = pipeline.subscribers.map(sub => 
       axios.post(sub.url, {
-        // ديسكورد يحتاج حقل content لكي تظهر الرسالة في القناة
         content: `🚀 **BallanceIT: New Event Processed!**\n**Pipeline:** ${pipeline.name}\n**Result Data:** \`\`\`json\n${JSON.stringify(processedResult, null, 2)}\n\`\`\``
       }).catch(err => {
-          // طباعة تفاصيل الخطأ إذا رفض ديسكورد الاستلام
           console.error(`❌ Discord Error (${sub.url}):`, err.response?.data || err.message);
       })
     );
@@ -75,7 +73,11 @@ const worker = new Worker('webhook-handler', async (job) => {
     });
   }
 }, {
-  connection: { host: 'localhost', port: 6379 }
+  // Use the service name defined in docker-compose.yml
+  connection: { 
+    host: process.env.REDIS_HOST || 'localhost', 
+    port: parseInt(process.env.REDIS_PORT || '6379') 
+  }
 });
 
 console.log('👷 Worker is running and waiting for jobs...');

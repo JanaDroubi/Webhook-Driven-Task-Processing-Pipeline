@@ -8,9 +8,13 @@ import { ExpressAdapter } from '@bull-board/express';
 const app = express();
 const prisma = new PrismaClient();
 
-// Redis connection
+
+// New Dynamic Code
 const webhookQueue = new Queue('webhook-handler', {
-  connection: { host: 'localhost', port: 6379 }
+  connection: { 
+    host: process.env.REDIS_HOST || 'localhost', 
+    port: parseInt(process.env.REDIS_PORT || '6379') 
+  }
 });
 
 // Bull Dashboard setup
