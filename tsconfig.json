@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
     /* File Layout */
-    "rootDir": "./src",                          // مسار الكود المصدري
-    "outDir": "./dist",                         // مسار الكود المترجم (JS)
+    "rootDir": "./src",                        
+    "outDir": "./dist",                        
 
     /* Environment Settings */
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "target": "esnext",
-    "lib": ["esnext"],                          // إضافة دعم ميزات JS الحديثة
-    "types": ["node"],                          // تعريفات Node.js
-
+    "lib": ["esnext"],                          
+    "types": ["node", "jest"],                         
     /* Other Outputs */
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
 
     /* Interop */
-    "esModuleInterop": true,                    // مهم جداً للتوافق مع المكتبات
+    "esModuleInterop": true,                   
     "forceConsistentCasingInFileNames": true,
 
     /* Stricter Typechecking Options */
@@ -33,6 +32,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],                      // تضمين كل شيء داخل src
-  "exclude": ["node_modules", "dist"]           // استثناء المجلدات غير الضرورية
+  "include": ["src/**/*"],                     
+  "exclude": ["node_modules", "dist"]          
 }
