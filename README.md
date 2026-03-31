@@ -101,6 +101,13 @@ All features are built with **TypeScript**, containerized with **Docker**, and d
 - Postman (API testing)
 - Bull Dashboard (queue monitoring)
 
+**Infrastructure & DevOps:**
+- **Docker & Docker Compose**: Containerization for environment parity.
+- **GitHub Actions**: Automated CI/CD pipeline for testing and deployment.
+- **Docker Hub**: Automated image hosting and versioning.
+- **Jest**: Unit and End-to-End (E2E) testing framework.
+
+
 ---
 
 ## ✨ Features
@@ -448,8 +455,31 @@ webhook-pipeline-service/
 - **3rd retry**: 4 second delay
 - **Max attempts**: 3 (configurable)
 
+### Why Automated E2E Testing in CI?
+We implemented a dedicated E2E stage in GitHub Actions that mirrors the production Docker environment. This ensures that any changes to the Prisma schema or BullMQ configuration are validated against real database and Redis instances before the code is ever deployed.
+
+### Why ESM (ECMAScript Modules)?
+The project uses `"type": "module"` in `package.json`. This allows us to use top-level await and modern JavaScript features, though it required specific configuration for **Jest** (using `--experimental-vm-modules`) to handle asynchronous test discovery correctly.
+
 This approach balances delivery reliability with system load.
 
+---
+## 🚀 CI/CD & Automated Deployment
+
+The project features a robust **GitHub Actions** pipeline that ensures code quality and reliable deployments. Every push to the `master` branch triggers a multi-stage workflow:
+
+1. **Test Stage**: 
+   - Spins up ephemeral **PostgreSQL** and **Redis** services.
+   - Runs `npm ci` for clean dependency installation.
+   - Executes database migrations and runs unit tests.
+2. **E2E Stage**: 
+   - Orchestrates the full environment using `docker-compose`.
+   - Runs End-to-End tests to verify the integration between the API, Queue, and Worker.
+3. **Deploy Stage**: 
+   - Upon successful tests, builds a production-ready Docker image.
+   - Authenticates via **Docker Hub PAT (Personal Access Token)**.
+   - Pushes the latest image to `janadroubi/webhook-pipeline:latest`.
+  
 ---
 
 ## 🛡️ Error Handling & Reliability
@@ -529,7 +559,15 @@ PORT=3001
 netstat -ano | findstr :3000
 taskkill /PID <PID> /F
 ```
-
+**5. Nested Directory / Haste Naming Collisions (Windows)**
+If you encounter `Multiple data sources found` or `Haste Map` errors in Jest:
+- This usually happens due to deeply nested `node_modules` in temporary or backup folders.
+- **Solution**: Use the "Nuclear Wipe" to sync an empty directory over the offending folder:
+  ```powershell
+  mkdir empty_dir
+  robocopy empty_dir "folder_to_delete" /mir
+  rmdir empty_dir
+  rmdir "folder_to_delete"
 ---
 
 ## 🤝 Credits

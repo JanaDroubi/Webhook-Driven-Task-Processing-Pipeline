@@ -54,14 +54,39 @@ const worker = new Worker('webhook-handler', async (job) => {
     });
 
     // 4. Send result to all subscribers (Discord format)
-    const deliveryPromises = pipeline.subscribers.map(sub => 
-      axios.post(sub.url, {
-        content: `🚀 **BallanceIT: New Event Processed!**\n**Pipeline:** ${pipeline.name}\n**Result Data:** \`\`\`json\n${JSON.stringify(processedResult, null, 2)}\n\`\`\``
-      }).catch(err => {
-          console.error(`❌ Discord Error (${sub.url}):`, err.response?.data || err.message);
-      })
-    );
+// 4. Send result to all subscribers (Discord embed format)
+const deliveryPromises = pipeline.subscribers.map(sub => {
+  const formattedData = JSON.stringify(processedResult, null, 2);
 
+  const shortData =
+    formattedData.length > 1000
+      ? formattedData.slice(0, 1000) + "\n... (truncated)"
+      : formattedData;
+
+  return axios.post(sub.url, {
+    embeds: [
+      {
+        title: "🚀 New Event Processed!",
+        description: `Pipeline: **${pipeline.name}**`,
+        color: 3447003,
+        fields: [
+          {
+            name: "📦 Result Data",
+            value: `\`\`\`json\n${shortData}\n\`\`\``
+          }
+        ],
+        footer: {
+          text: "Webhook Pipeline System"
+        },
+        timestamp: new Date().toISOString()
+      }
+    ]
+  }).catch(err => {
+    console.error(`❌ Discord Error (${sub.url}):`, err.response?.data || err.message);
+  });
+});
+
+await Promise.all(deliveryPromises);
     await Promise.all(deliveryPromises);
     console.log(`✅ Job ${jobId} processed & delivered to ${pipeline.subscribers.length} subscribers`);
 
