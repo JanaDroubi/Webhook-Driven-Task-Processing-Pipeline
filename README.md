@@ -62,14 +62,14 @@ All features are built with **TypeScript**, containerized with **Docker**, and d
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   API Server    │────▶│   BullMQ Queue   │────▶│    Worker       │
+│   API Server    │───▶│   BullMQ Queue   │────▶│    Worker       │
 │  (Express.js)   │     │   (Redis)        │     │   Processors    │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
          │                       │                        │
          ▼                       ▼                        ▼
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   PostgreSQL    │     │   Webhook Ingest │     │  Subscriber     │
-│   (Pipeline DB) │     │                  │     │  Delivery       │
+│   PostgreSQL    │     │  Webhook Ingest  │     │    Subscriber   │
+│  (Pipeline DB)  │     │                  │     │    Delivery     │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
 ```
 
